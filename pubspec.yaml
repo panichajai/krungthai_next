@@ -14,12 +14,19 @@ dependencies:
   cupertino_icons: ^1.0.8
   get: ^4.7.2
   flutter_screenutil: ^5.9.0
+  flutter_launcher_icons: ^0.14.4
+  mobile_scanner: ^6.0.10
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
   flutter_lints: ^4.0.0
+
+flutter_launcher_icons:
+  android: "ic_launcher"
+  ios: true
+  image_path: "assets/images/logo_flutter.jpg"
 
 flutter:
   uses-material-design: true
