@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:krungthai_next/home/models/featuremodel.dart';
-import 'package:krungthai_next/home/view/homescreen.dart';
+import 'package:krungthai_next/home/views/homescreen.dart';
 
-class FeatureScreen extends StatelessWidget {
-  const FeatureScreen({super.key, this.title});
+class BannerScreen extends StatelessWidget {
+  const BannerScreen({super.key, this.title});
 
   final String? title;
 

@@ -6,10 +6,13 @@ import 'package:krungthai_next/home/models/bannermodel.dart';
 import 'package:krungthai_next/home/models/favoritemodel.dart';
 import 'package:krungthai_next/home/models/featuremodel.dart';
 import 'package:krungthai_next/home/models/promotionmodel.dart';
-import 'package:krungthai_next/home/view/bannerscreen.dart';
-import 'package:krungthai_next/home/view/favoritescreen.dart';
-import 'package:krungthai_next/home/view/featurescreen.dart';
-import 'package:krungthai_next/home/view/promotionscreen.dart';
+import 'package:krungthai_next/home/views/bannerscreen.dart';
+import 'package:krungthai_next/home/views/favoritescreen.dart';
+import 'package:krungthai_next/home/views/featurescreen.dart';
+import 'package:krungthai_next/home/views/promotionscreen.dart';
+import 'package:krungthai_next/profile/views/profilescreen.dart';
+import 'package:krungthai_next/testscan.dart';
+import 'package:krungthai_next/testscreen.dart';
 import 'package:krungthai_next/utils/imageapp.dart';
 import 'package:krungthai_next/widgets/barcode.dart';
 import 'package:krungthai_next/widgets/dialogs/dialog.dart';
@@ -42,29 +45,6 @@ class HomeScreen extends StatelessWidget {
           ),
         );
       },
-      // child: Center(child: Text('Back navigation is disabled on this page')),
-      // WillPopScope(
-      //   onWillPop: () async {
-      //     showDialog(
-      //       context: context,
-      //       builder: (context) => AlertDialog(
-      //         title: Text('Exit App?'),
-      //         content: Text('Are you sure you want to exit?'),
-      //         actions: [
-      //           TextButton(
-      //             onPressed: () => Navigator.of(context).pop(false),
-      //             child: Text('No'),
-      //           ),
-      //           TextButton(
-      //             onPressed: () => Navigator.of(context).pop(true),
-      //             child: Text('Yes'),
-      //           ),
-      //         ],
-      //       ),
-      //     );
-      //     print('The user tries to pop()');
-      //     return false;
-      //   },
       child: Scaffold(
         appBar: AppBar(
           centerTitle: true,
@@ -134,41 +114,33 @@ class HomeScreen extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 16.h),
-              Column(
-                children: [
-                  SizedBox(
-                    width: double.infinity,
-                    height: 300,
-                    child: GridView.builder(
-                      scrollDirection: Axis.horizontal,
-                      itemCount: features.length,
-                      gridDelegate:
-                          const SliverGridDelegateWithMaxCrossAxisExtent(
-                              maxCrossAxisExtent: 200,
-                              childAspectRatio: 1,
-                              crossAxisSpacing: 0,
-                              mainAxisSpacing: 0),
-                      itemBuilder: (context, index) {
-                        final feature = features[index];
-                        return Padding(
-                          padding: const EdgeInsets.only(right: 16),
-                          child: GestureDetector(
-                            //เอาไว้เรียก onTap
-                            onTap: () {
-                              Get.to(() => FeatureScreen(title: feature.title));
-                            },
-                            child: FeatureIcon(
-                              title: feature.title ?? '',
-                              icon: feature.icon ?? Icons.help_outline,
-                            ),
-                          ),
-                        );
+              SizedBox(
+                width: double.infinity,
+                height: 260,
+                child: GridView.builder(
+                  padding: EdgeInsets.symmetric(horizontal: 8),
+                  scrollDirection: Axis.horizontal,
+                  itemCount: features.length,
+                  gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+                      maxCrossAxisExtent: 160,
+                      childAspectRatio: 1.3,
+                      crossAxisSpacing: 6,
+                      mainAxisSpacing: 6),
+                  itemBuilder: (context, index) {
+                    final feature = features[index];
+                    return GestureDetector(
+                      //เอาไว้เรียก onTap
+                      onTap: () {
+                        Get.to(() => FeatureScreen(title: feature.title));
                       },
-                    ),
-                  ),
-                ],
+                      child: FeatureIcon(
+                        title: feature.title ?? '',
+                        icon: feature.icon ?? Icons.help_outline,
+                      ),
+                    );
+                  },
+                ),
               ),
-              SizedBox(height: 10.h),
               Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: Row(
@@ -289,47 +261,19 @@ class HomeScreen extends StatelessWidget {
               case 0:
                 break;
               case 1:
+                Get.to(() => MyWidget());
                 break;
               case 2:
                 Get.to(() => BarcodeScannerScreen());
               case 3:
+                Get.to(() => MyApp());
                 break;
               case 4:
+                Get.to(() => ProfileScreen());
                 break;
             }
           },
         ),
-
-        // bottomNavigationBar: NavigationBar(
-        //   onDestinationSelected: (int index) {
-        //     homeController.currentPageIndex.value = index;
-        //   },
-        //   indicatorColor: Colors.amber,
-        //   selectedIndex: homeController.currentPageIndex.value,
-        //   destinations: const <Widget>[
-        //     NavigationDestination(
-        //       selectedIcon: Icon(Icons.home),
-        //       icon: Icon(Icons.home_outlined),
-        //       label: 'Home',
-        //     ),
-        //     NavigationDestination(
-        //       icon: Badge(child: Icon(Icons.credit_card)),
-        //       label: 'Account',
-        //     ),
-        //     NavigationDestination(
-        //       icon: Badge(label: Text('2'), child: Icon(Icons.qr_code)),
-        //       label: 'Scan',
-        //     ),
-        //     NavigationDestination(
-        //       icon: Icon(Icons.menu),
-        //       label: 'Services',
-        //     ),
-        //     NavigationDestination(
-        //       icon: Badge(child: Icon(Icons.settings_outlined)),
-        //       label: 'Settings',
-        //     ),
-        //   ],
-        // ),
       ),
     );
   }
@@ -343,16 +287,20 @@ class FeatureIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        CircleAvatar(
-          radius: 36,
-          backgroundColor: Colors.blue.shade100,
-          child: Icon(icon, color: Colors.blue),
-        ),
-        const SizedBox(height: 8),
-        Text(title, style: TextStyle(fontSize: 12)),
-      ],
+    return SizedBox(
+      height: 100,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          CircleAvatar(
+            radius: 32,
+            backgroundColor: Colors.blue.shade100,
+            child: Icon(icon, color: Colors.blue),
+          ),
+          const SizedBox(height: 8),
+          Text(title, style: TextStyle(fontSize: 12)),
+        ],
+      ),
     );
   }
 }

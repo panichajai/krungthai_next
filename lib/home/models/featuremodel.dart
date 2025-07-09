@@ -16,4 +16,6 @@ List<FeatureModel> features = [
   FeatureModel(title: "Loan", icon: Icons.credit_card),
   FeatureModel(title: "ATM", icon: Icons.credit_card),
   FeatureModel(title: "More", icon: Icons.more_horiz),
+  FeatureModel(title: "More", icon: Icons.more_horiz),
+  FeatureModel(title: "More", icon: Icons.more_horiz),
 ];
