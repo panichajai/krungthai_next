@@ -22,10 +22,12 @@ class _BarcodeScannerScreenState extends State<BarcodeScannerScreen> {
             child: MobileScanner(
               onDetect: (BarcodeCapture capture) {
                 final List<Barcode> barcodes = capture.barcodes;
+
                 if (barcodes.isNotEmpty && barcodes.first.rawValue != null) {
                   setState(() {
                     barcodeResult = barcodes.first.rawValue!;
                   });
+                  print({"----------- barcodes =$barcodeResult -------------"});
                 }
               },
             ),

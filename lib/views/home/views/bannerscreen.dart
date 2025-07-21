@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:krungthai_next/home/models/featuremodel.dart';
-import 'package:krungthai_next/home/views/homescreen.dart';
+import 'package:krungthai_next/views/home/models/featuremodel.dart';
+import 'package:krungthai_next/views/home/views/homescreen.dart';
 
 class BannerScreen extends StatelessWidget {
   const BannerScreen({super.key, this.title});

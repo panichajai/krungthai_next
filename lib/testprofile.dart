@@ -1,12 +1,14 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:krungthai_next/profile/controllers/profilecontroller.dart';
+import 'package:krungthai_next/views/profile/controllers/profilecontroller.dart';
 
-class ProfileScreen extends StatelessWidget {
-  const ProfileScreen({super.key});
+class TestProfileScreen extends StatelessWidget {
+  TestProfileScreen({super.key});
   @override
+  final controller = Get.put(ProfileController());
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
@@ -63,8 +65,8 @@ class ProfilePic extends StatelessWidget {
         children: [
           Obx(() {
             return CircleAvatar(
-              backgroundImage: controller.selectedImage.value != null
-                  ? FileImage(controller.selectedImage.value!)
+              backgroundImage: controller.base64Image.value.isNotEmpty
+                  ? MemoryImage(base64Decode(controller.base64Image.value))
                   : null,
             );
           }),

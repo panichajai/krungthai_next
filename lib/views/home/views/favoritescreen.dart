@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:krungthai_next/home/models/favoritemodel.dart';
-import 'package:krungthai_next/home/models/featuremodel.dart';
-import 'package:krungthai_next/home/views/homescreen.dart';
+import 'package:krungthai_next/views/home/models/favoritemodel.dart';
+import 'package:krungthai_next/views/home/models/featuremodel.dart';
+import 'package:krungthai_next/views/home/views/homescreen.dart';
 
 class FavoriteScreen extends StatelessWidget {
   const FavoriteScreen({super.key});
@@ -25,7 +25,7 @@ class FavoriteScreen extends StatelessWidget {
                   padding: EdgeInsets.only(right: 16),
                   child: FeatureIcon(
                     title: favorite.title ?? "",
-                    icon: favorite.icon ?? Icons.help_outline,
+                    image: favorite.image ?? "",
                   ),
                 );
               },

@@ -20,13 +20,12 @@ class _DialogAppState extends State<DialogApp> {
       title: const Text('AlertDialog Title'),
       content: Text(widget.content),
       actions: <Widget>[
-        TextButton(
-          onPressed: () => Navigator.pop(context, 'Cancel'),
-          child: const Text('Cancel'),
-        ),
-        TextButton(
-          onPressed: () => Navigator.pop(context, 'OK'),
-          child: const Text('OK'),
+        ElevatedButton(
+          onPressed: widget.submit,
+          style: ElevatedButton.styleFrom(
+            foregroundColor: Colors.black,
+          ),
+          child: Text("ok_btn".tr),
         ),
       ],
     );
